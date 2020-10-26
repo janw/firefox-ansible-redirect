@@ -5,10 +5,10 @@
         toggleRedirectBtn.classList.remove("warning", "success");
         if (isEnabled) {
             toggleRedirectBtn.classList.add("warning");
-            toggleRedirectBtn.textContent = "Disable redirecting temporarily";
+            toggleRedirectBtn.textContent = "Disable Redirect";
         } else {
             toggleRedirectBtn.classList.add("success");
-            toggleRedirectBtn.textContent = "Re-enable redirecting";
+            toggleRedirectBtn.textContent = "Enable Redirect";
         }
     }
 

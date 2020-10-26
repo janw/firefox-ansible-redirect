@@ -1,45 +1,32 @@
 button {
     background-color: transparent;
     border: 1px solid #000;
-    border-radius: 5px;
+    border-radius: 2px;
     font-size: 14px;
-    padding: 12px;
-    width: 150px;
-    height: 60px;
+    padding: 10px;
+    width: 160px;
 }
 
 button.warning {
-    border-color: #dcb239;
-    color: #dcb239;
+    border-color: #c20000;
+    color: #c20000;
 }
 
 button.warning:hover {
-    background-color: #dcb239;
+    background-color: #c20000;
 }
 
 button.success {
-    border-color: #5cb85c;
-    color: #5cb85c;
+    border-color: #48a0a2;
+    color: #48a0a2;
 }
 
 button.success:hover {
-    background-color: #5cb85c;
+    background-color: #48a0a2;
 }
 
 button:hover {
     background-color: #000;
     color: #fff;
     cursor: pointer;
-}
-
-#versionDiv {
-    color: #646464;
-    font-family: "Lucida Grande", Arial, sans-serif;
-    font-size: 14px;
-    margin: 10px 0 10px 0;
-    text-align: center;
-}
-
-#versionSelect {
-    text-align: right;
 }
