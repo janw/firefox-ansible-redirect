@@ -1,16 +1,13 @@
 (function () {
-    const URL_REGEX = /^(https?:\/\/docs\.python\.org\/)([23][^\/]*?)(\/.*)/;
-    const SPECIAL_CASES = {
-        "/library/sets.html" : "/library/stdtypes.html#set",
-        "/library/stringio.html": "/library/io.html#io.StringIO"
-    };
 
-    let pyVersion, isEnabled;
+    const URL_REGEX = /^https?:\/\/docs\.ansible\.com\/ansible\/latest\/([\w\_]+\.html)(#.+z)?/;
+    const NEW_BASEURL = "https://docs.ansible.com/ansible/latest/collections/ansible/builtin/";
+
+    let isEnabled;
 
     browserAPI.getStorageData(
-        {pyVersion: "3", isEnabled: true},
+        {isEnabled: true},
         data => {
-            pyVersion = data.pyVersion;
             isEnabled = data.isEnabled;
         }
     );
@@ -18,8 +15,8 @@
     function getRedirectURL(oldUrl) {
         let matches = URL_REGEX.exec(oldUrl);
 
-        return matches && (matches[1] !== pyVersion)
-            ? matches[1] + pyVersion + (SPECIAL_CASES[matches[3]] || matches[3])
+        return matches
+            ? NEW_BASEURL + matches[1] + (matches[2] || "")
             : oldUrl;
     }
 
@@ -74,7 +71,7 @@
                 : {};
         },
         {
-            urls: ["*://docs.python.org/*"],
+            urls: ["*://docs.ansible.com/*"],
             types: ["main_frame"]
         },
         ["blocking"]
@@ -96,9 +93,6 @@
             isEnabled = !isEnabled;
             browserAPI.api.storage.local.set({isEnabled: isEnabled});
             sendResponse(isEnabled);
-        } else if (request.action === "setPyVersion") {
-            pyVersion = request.pyVersion;
-            browserAPI.api.storage.local.set({pyVersion: pyVersion});
         }
     });
 })();
